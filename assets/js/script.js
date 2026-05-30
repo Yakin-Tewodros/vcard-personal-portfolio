@@ -55,6 +55,60 @@ overlay.addEventListener("click", testimonialsModalFunc);
 
 
 
+// portfolio preview modal variables
+const projectLinks = document.querySelectorAll(".project-item > a");
+const projectModalContainer = document.querySelector("[data-project-modal-container]");
+const projectModalCloseBtn = document.querySelector("[data-project-modal-close-btn]");
+const projectOverlay = document.querySelector("[data-project-overlay]");
+const projectModalImg = document.querySelector("[data-project-modal-img]");
+const projectModalTitle = document.querySelector("[data-project-modal-title]");
+const projectModalCategory = document.querySelector("[data-project-modal-category]");
+const projectModalLink = document.querySelector("[data-project-modal-link]");
+
+const openProjectModal = function () {
+  projectModalContainer.classList.add("active");
+  projectOverlay.classList.add("active");
+}
+
+const closeProjectModal = function () {
+  projectModalContainer.classList.remove("active");
+  projectOverlay.classList.remove("active");
+}
+
+for (let i = 0; i < projectLinks.length; i++) {
+  projectLinks[i].addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const projectImg = this.querySelector(".project-img img");
+    const projectTitle = this.querySelector(".project-title");
+    const projectCategory = this.querySelector(".project-category");
+    const projectHref = this.getAttribute("href");
+
+    projectModalImg.src = projectImg.currentSrc || projectImg.src;
+    projectModalImg.alt = projectImg.alt;
+    projectModalTitle.innerHTML = projectTitle.innerHTML;
+    projectModalCategory.innerHTML = projectCategory.innerHTML;
+
+    if (projectHref && projectHref !== "#") {
+      projectModalLink.href = this.href;
+      projectModalLink.removeAttribute("hidden");
+    } else {
+      projectModalLink.setAttribute("hidden", "");
+    }
+
+    openProjectModal();
+  });
+}
+
+projectModalCloseBtn.addEventListener("click", closeProjectModal);
+projectOverlay.addEventListener("click", closeProjectModal);
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") closeProjectModal();
+});
+
+
+
 // custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");

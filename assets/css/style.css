@@ -336,6 +336,34 @@ main {
   border-radius: 20px;
 }
 
+.avatar-box img {
+  border-radius: 20px;
+}
+
+.skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.skill-pill {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #444;
+  transition: all 0.3s ease;
+}
+
+.skill-pill:hover {
+  background: #f5c542;
+  color: #111;
+  transform: translateY(-2px);
+}
+
 .info-content .name {
   color: var(--white-2);
   font-size: var(--fs-3);
@@ -1024,6 +1052,81 @@ main {
   color: var(--light-gray-70);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
+}
+
+.portfolio-preview-modal {
+  background: var(--eerie-black-2);
+  position: relative;
+  width: min(920px, calc(100vw - 24px));
+  max-height: calc(100vh - 32px);
+  margin: 16px 12px;
+  border: 1px solid var(--jet);
+  border-radius: 18px;
+  box-shadow: var(--shadow-5);
+  overflow: hidden;
+  transform: scale(1.08);
+  opacity: 0;
+  transition: var(--transition-1);
+  z-index: 2;
+}
+
+.portfolio-preview-modal .modal-close-btn { z-index: 3; }
+
+.modal-container.active .portfolio-preview-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.portfolio-preview-img {
+  background: var(--onyx);
+  width: 100%;
+  max-height: calc(100vh - 190px);
+  overflow: auto;
+}
+
+.portfolio-preview-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.portfolio-preview-content {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+}
+
+.portfolio-preview-content p {
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+}
+
+.portfolio-preview-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  max-width: 100%;
+  margin-top: 6px;
+  padding: 10px 14px;
+  background: var(--border-gradient-onyx);
+  color: var(--orange-yellow-crayola);
+  border-radius: 10px;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  box-shadow: var(--shadow-2);
+}
+
+.portfolio-preview-link[hidden] { display: none; }
+
+.portfolio-preview-link:hover,
+.portfolio-preview-link:focus { background: var(--bg-gradient-yellow-1); }
+
+.portfolio-preview-link ion-icon {
+  flex-shrink: 0;
+  font-size: 16px;
 }
 
 
