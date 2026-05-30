@@ -10,6 +10,9 @@ const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 // sidebar variables
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+const sidebarDefaultExpandedQuery = window.matchMedia("(max-width: 579px)");
+
+if (sidebarDefaultExpandedQuery.matches) sidebar.classList.add("active");
 
 // sidebar toggle functionality for mobile
 sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
