@@ -63,6 +63,7 @@ const projectOverlay = document.querySelector("[data-project-overlay]");
 const projectModalImg = document.querySelector("[data-project-modal-img]");
 const projectModalTitle = document.querySelector("[data-project-modal-title]");
 const projectModalCategory = document.querySelector("[data-project-modal-category]");
+const projectModalDescription = document.querySelector("[data-project-modal-description]");
 const projectModalLink = document.querySelector("[data-project-modal-link]");
 
 const openProjectModal = function () {
@@ -82,12 +83,14 @@ for (let i = 0; i < projectLinks.length; i++) {
     const projectImg = this.querySelector(".project-img img");
     const projectTitle = this.querySelector(".project-title");
     const projectCategory = this.querySelector(".project-category");
+    const projectDescription = this.querySelector("[data-project-description]");
     const projectHref = this.getAttribute("href");
 
     projectModalImg.src = projectImg.currentSrc || projectImg.src;
     projectModalImg.alt = projectImg.alt;
     projectModalTitle.innerHTML = projectTitle.innerHTML;
     projectModalCategory.innerHTML = projectCategory.innerHTML;
+    projectModalDescription.innerHTML = projectDescription ? projectDescription.innerHTML : "";
 
     if (projectHref && projectHref !== "#") {
       projectModalLink.href = this.href;
