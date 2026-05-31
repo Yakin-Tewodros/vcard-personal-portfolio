@@ -1,10 +1,10 @@
 'use strict';
 
 
-
 // element toggle function
-const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
-
+const elementToggleFunc = function (elem) {
+    elem.classList.toggle("active");
+}
 
 
 // sidebar variables
@@ -15,8 +15,9 @@ const sidebarDefaultExpandedQuery = window.matchMedia("(max-width: 579px)");
 if (sidebarDefaultExpandedQuery.matches) sidebar.classList.add("active");
 
 // sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
-
+sidebarBtn.addEventListener("click", function () {
+    elementToggleFunc(sidebar);
+});
 
 
 // testimonials variables
@@ -32,30 +33,29 @@ const modalText = document.querySelector("[data-modal-text]");
 
 // modal toggle function
 const testimonialsModalFunc = function () {
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
+    modalContainer.classList.toggle("active");
+    overlay.classList.toggle("active");
 }
 
 // add click event to all modal items
 for (let i = 0; i < testimonialsItem.length; i++) {
 
-  testimonialsItem[i].addEventListener("click", function () {
+    testimonialsItem[i].addEventListener("click", function () {
 
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-    modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
+        modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
+        modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
+        modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
+        modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
 
-    testimonialsModalFunc();
+        testimonialsModalFunc();
 
-  });
+    });
 
 }
 
 // add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 overlay.addEventListener("click", testimonialsModalFunc);
-
 
 
 // portfolio preview modal variables
@@ -70,49 +70,48 @@ const projectModalDescription = document.querySelector("[data-project-modal-desc
 const projectModalLink = document.querySelector("[data-project-modal-link]");
 
 const openProjectModal = function () {
-  projectModalContainer.classList.add("active");
-  projectOverlay.classList.add("active");
+    projectModalContainer.classList.add("active");
+    projectOverlay.classList.add("active");
 }
 
 const closeProjectModal = function () {
-  projectModalContainer.classList.remove("active");
-  projectOverlay.classList.remove("active");
+    projectModalContainer.classList.remove("active");
+    projectOverlay.classList.remove("active");
 }
 
 for (let i = 0; i < projectLinks.length; i++) {
-  projectLinks[i].addEventListener("click", function (event) {
-    event.preventDefault();
+    projectLinks[i].addEventListener("click", function (event) {
+        event.preventDefault();
 
-    const projectImg = this.querySelector(".project-img img");
-    const projectTitle = this.querySelector(".project-title");
-    const projectCategory = this.querySelector(".project-category");
-    const projectDescription = this.querySelector("[data-project-description]");
-    const projectHref = this.getAttribute("href");
+        const projectImg = this.querySelector(".project-img img");
+        const projectTitle = this.querySelector(".project-title");
+        const projectCategory = this.querySelector(".project-category");
+        const projectDescription = this.querySelector("[data-project-description]");
+        const projectHref = this.getAttribute("href");
 
-    projectModalImg.src = projectImg.currentSrc || projectImg.src;
-    projectModalImg.alt = projectImg.alt;
-    projectModalTitle.innerHTML = projectTitle.innerHTML;
-    projectModalCategory.innerHTML = projectCategory.innerHTML;
-    projectModalDescription.innerHTML = projectDescription ? projectDescription.innerHTML : "";
+        projectModalImg.src = projectImg.currentSrc || projectImg.src;
+        projectModalImg.alt = projectImg.alt;
+        projectModalTitle.innerHTML = projectTitle.innerHTML;
+        projectModalCategory.innerHTML = projectCategory.innerHTML;
+        projectModalDescription.innerHTML = projectDescription ? projectDescription.innerHTML : "";
 
-    if (projectHref && projectHref !== "#") {
-      projectModalLink.href = this.href;
-      projectModalLink.removeAttribute("hidden");
-    } else {
-      projectModalLink.setAttribute("hidden", "");
-    }
+        if (projectHref && projectHref !== "#") {
+            projectModalLink.href = this.href;
+            projectModalLink.removeAttribute("hidden");
+        } else {
+            projectModalLink.setAttribute("hidden", "");
+        }
 
-    openProjectModal();
-  });
+        openProjectModal();
+    });
 }
 
 projectModalCloseBtn.addEventListener("click", closeProjectModal);
 projectOverlay.addEventListener("click", closeProjectModal);
 
 document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") closeProjectModal();
+    if (event.key === "Escape") closeProjectModal();
 });
-
 
 
 // custom select variables
@@ -121,18 +120,20 @@ const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
-select.addEventListener("click", function () { elementToggleFunc(this); });
+select.addEventListener("click", function () {
+    elementToggleFunc(this);
+});
 
 // add event in all select items
 for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
+    selectItems[i].addEventListener("click", function () {
 
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
+        let selectedValue = this.innerText.toLowerCase();
+        selectValue.innerText = this.innerText;
+        elementToggleFunc(select);
+        filterFunc(selectedValue);
 
-  });
+    });
 }
 
 // filter variables
@@ -140,17 +141,17 @@ const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
 
-  for (let i = 0; i < filterItems.length; i++) {
+    for (let i = 0; i < filterItems.length; i++) {
 
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
+        if (selectedValue === "all") {
+            filterItems[i].classList.add("active");
+        } else if (selectedValue === filterItems[i].dataset.category) {
+            filterItems[i].classList.add("active");
+        } else {
+            filterItems[i].classList.remove("active");
+        }
+
     }
-
-  }
 
 }
 
@@ -159,20 +160,19 @@ let lastClickedBtn = filterBtn[0];
 
 for (let i = 0; i < filterBtn.length; i++) {
 
-  filterBtn[i].addEventListener("click", function () {
+    filterBtn[i].addEventListener("click", function () {
 
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
+        let selectedValue = this.innerText.toLowerCase();
+        selectValue.innerText = this.innerText;
+        filterFunc(selectedValue);
 
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
+        lastClickedBtn.classList.remove("active");
+        this.classList.add("active");
+        lastClickedBtn = this;
 
-  });
+    });
 
 }
-
 
 
 // contact form variables
@@ -182,18 +182,17 @@ const formBtn = document.querySelector("[data-form-btn]");
 
 // add event to all form input field
 for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
+    formInputs[i].addEventListener("input", function () {
 
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
-    }
+        // check form validation
+        if (form.checkValidity()) {
+            formBtn.removeAttribute("disabled");
+        } else {
+            formBtn.setAttribute("disabled", "");
+        }
 
-  });
+    });
 }
-
 
 
 // page navigation variables
@@ -202,18 +201,18 @@ const pages = document.querySelectorAll("[data-page]");
 
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
+    navigationLinks[i].addEventListener("click", function () {
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
+        for (let i = 0; i < pages.length; i++) {
+            if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+                pages[i].classList.add("active");
+                navigationLinks[i].classList.add("active");
+                window.scrollTo(0, 0);
+            } else {
+                pages[i].classList.remove("active");
+                navigationLinks[i].classList.remove("active");
+            }
+        }
 
-  });
+    });
 }
